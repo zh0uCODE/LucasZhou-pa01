@@ -4,6 +4,7 @@
 #include <string>
 #include "card.h"
 #include "card_list.h"
+#include <sstream>
 //Do not include set in this file
 
 using namespace std;
@@ -13,6 +14,9 @@ int main(int argv, char** argc){
     cout << "Please provide 2 file names" << endl;
     return 1;
   }
+
+  BST aliceCards; //set for alice cards
+  BST bobCards; //set for bob cards
   
   ifstream cardFile1 (argc[1]);
   ifstream cardFile2 (argc[2]);
@@ -23,15 +27,35 @@ int main(int argv, char** argc){
     return 1;
   }
 
+
   //Read each file
   while (getline (cardFile1, line) && (line.length() > 0)){
-
+    char suit;
+    string value;
+    stringstream ss(line);
+    ss >> suit >> value;
+    Card c(value, suit);
+    aliceCards.insert(c);
+    //cout << suit << " " << value << endl;
   }
   cardFile1.close();
-
-
+  aliceCards.printInOrder();
+  cout << endl;
+  Card c1("a",'d');
+  BST::Node* p = aliceCards.getPredecessorNode(c1);
+  cout << p->c << endl; 
+  BST::Node* s = aliceCards.getSuccessorNode(c1);
+  cout << s->c << endl;
+  cout << "Alice cards contains (c 4) " << aliceCards.contains(c1) << endl;
+   
   while (getline (cardFile2, line) && (line.length() > 0)){
-
+    char suit;
+    string value;
+    stringstream ss(line);
+    ss >> suit >> value;
+    Card c(value, suit);
+    bobCards.insert(c);
+    cout << suit << " " << value << endl;
   }
   cardFile2.close();
   
