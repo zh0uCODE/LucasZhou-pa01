@@ -42,10 +42,12 @@ int main(int argv, char** argc){
   aliceCards.printInOrder();
   cout << endl;
   Card c1("a",'d');
-  BST::Node* p = aliceCards.getPredecessorNode(c1);
-  cout << p->c << endl; 
-  BST::Node* s = aliceCards.getSuccessorNode(c1);
-  cout << s->c << endl;
+  //BST::Node* p = aliceCards.getPredecessorNode(c1);
+  //cout << p->c << endl; 
+  //BST::Node* s = aliceCards.getSuccessorNode(c1);
+  //cout << s->c << endl;
+  aliceCards.remove(c1);
+  aliceCards.printInOrder();
   cout << "Alice cards contains (c 4) " << aliceCards.contains(c1) << endl;
    
   while (getline (cardFile2, line) && (line.length() > 0)){

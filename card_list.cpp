@@ -130,4 +130,71 @@ BST::Node* BST::getSuccessorNode(Card& c) const{
   }
 }
 
+bool BST::remove(Card& card){
+  Node* n = getNodeFor(card, root); //find node
+  if (n == nullptr) { //nothing to be removed
+    return false; //doesn't exist
+  }
+  Node* p = n->parent; //parent for n
+  if (n->left == nullptr && n->right == nullptr) { //no kids
+    if (p == nullptr) { //no parent
+      delete n; //just delete n
+      root = nullptr; //to be clear, make list empty! bst is NULL
+      return true; //deleted a single node!!!
+    } else { //has a parent
+      if (p->left == n) { //p's left is current node to be deleted
+        p->left = nullptr; //detach
+        delete n; //delete n
+        return true; //delete success
+      } else { //parent's right is n
+        p->right = nullptr; //detach
+        delete n; //delete n
+        return true; //deleted!
+      }
+    }
+  } else if (n->left != nullptr && n->right == nullptr) { //left kid
+    Node* c = n->left; //left child!
+    c->parent = p; //parent to child
+    if (p == nullptr) { //no parent
+      root = c; //save root as child
+      delete n; //get rid of self
+      return true; //success
+    } else { //yes parent
+      if (p->left == n) { //parent's left is current node
+        p->left = c; //p's left link to child
+        delete n; //safely delete n
+        return true; //success
+      } else { //parent's right is n
+        p->right = c; //p's right link to child 
+        delete n; //safely delete n
+        return true; //success
+      }
+    }
+  } else if (n->right != nullptr && n->left == nullptr) { //right kid
+    Node* c = n->right; //right child
+    c->parent = p; //child->parent
+    if (p == nullptr) { //no parent
+      delete n; //delete n
+      root = nullptr; //root null
+      return true; //deleted
+    } else { //there is a parent 
+      if (p->right == n) { //parent's right is current node
+        p->right = c; //parent's right points to child
+        delete n; //safely delete n
+        return true; //success
+      } else { //parent's left is n
+        p->left = c; //parent's left points to child
+        delete n; //safely delete n
+        return true; //success
+      }
+    }
+  } else { //2 kids
+    Node* succ = getSuccessorNode(card); //get successor
+    Card temp(succ->c.value, succ->c.suit); //save in temp
+    remove(succ->c); //delete successor node
+    n->c = temp; //replace after deleting, done!
+    return true; //deleted
+  }
+}
+
 
