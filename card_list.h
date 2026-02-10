@@ -42,7 +42,57 @@ class BST{
     // these should be used by getPredecessor and getSuccessor, and ONE of them should be used by remove
     Node* getSuccessorNode(Card& c) const;   // returns the Node containing the successor of the given value
     Node* getPredecessorNode(Card& c) const; // returns the Node containing the predecessor of the given value
-
+    
+   class Iterator{
+     private:
+       Node* curr;
+       BST* cardList; 
+     public:
+       Iterator(Node* n, BST* c_list) : curr(n), cardList(c_list) { }
+       Iterator& operator++() {
+         if (curr == nullptr) {
+           return *this;
+         }
+         curr = cardList->getSuccessorNode(curr->c);
+         return *this; 
+      }
+      Iterator& operator--() {
+        if (curr == nullptr) {
+          return *this;
+        }
+        curr = cardList->getPredecessorNode(curr->c);
+        return *this;
+      }
+      bool operator!=(const Iterator& other) const {
+        return this->curr != other.curr;
+      }
+      Card& operator*() const {
+        return curr->c; //object!
+      }
+      Card* operator->() const {
+        return &curr->c; //memory address!
+      }
+  };
+  Iterator begin() const {
+    Node* n = root; 
+    while (n != nullptr && n->left != nullptr) {
+      n = n->left;
+    }
+    return Iterator(n, (BST*)this);
+  }
+  Iterator end() const {
+    return Iterator(nullptr, (BST*)this); 
+  }
+  Iterator rbegin() const {
+    Node* n = root;
+    while (n != nullptr && n->right != nullptr) {
+      n = n->right;
+    }
+    return Iterator(n, (BST*)this);
+  }
+  Iterator rend() const {
+    return Iterator(nullptr, (BST*)this);
+  }  
 };
 //revised bst for pa01
     

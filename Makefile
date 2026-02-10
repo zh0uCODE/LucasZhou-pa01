@@ -1,7 +1,7 @@
 CXX=g++ 
 CXXFLAGS = -g --std=c++20 -Wall
 
-all: game game_set
+all: game game_set tests
 
 game_set: card.o main_set.o
 	${CXX} ${CXXFLAGS} card.o main_set.o -o game_set
