@@ -1,5 +1,5 @@
 // card_list.h
-// Author: Your name
+// Author: Lucas Zhou
 // All class declarations related to defining a BST that represents a player's hand
 
 #ifndef CARD_LIST_H
@@ -31,7 +31,17 @@ class BST{
     // just one instance variable (pointer to root node):
     Node *root;
     
-    
+    //to help with -- iterator:
+    Node* getMaxNode() const{
+      Node* n = root;
+      if (n == nullptr) {
+        return nullptr;
+      }
+      while (n->right != nullptr) { 
+        n = n->right;
+      }
+      return n;
+    }
 
     // recursive utility functions for use by public methods above
     Node* getNodeFor(Card& c, Node* n) const; // IMPLEMENT THIS FIRST: returns the node for a given value or NULL if none exists
@@ -58,6 +68,7 @@ class BST{
       }
       Iterator& operator--() {
         if (curr == nullptr) {
+          curr = cardList->getMaxNode();
           return *this;
         }
         curr = cardList->getPredecessorNode(curr->c);
@@ -65,6 +76,9 @@ class BST{
       }
       bool operator!=(const Iterator& other) const {
         return this->curr != other.curr;
+      }
+      bool operator==(const Iterator& other) const {
+        return this->curr == other.curr;
       }
       Card& operator*() const {
         return curr->c; //object!

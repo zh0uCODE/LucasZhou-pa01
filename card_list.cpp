@@ -1,5 +1,5 @@
 // card_list.cpp
-// Author: Your name
+// Author: Lucas Zhou
 // Implementation of the classes defined in card_list.h
 #include <iostream>
 #include "card_list.h"
