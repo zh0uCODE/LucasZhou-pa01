@@ -16,6 +16,13 @@ int main(int argv, char** argc){
   if (!Cards.contains(c1)) { 
     cout << "PASSED empty test" << endl;
   }
+  cout << "Empty List Iterator Tests" << endl;
+  for (auto it = Cards.begin(); it != Cards.end(); ++it) {
+    cout << *it << endl;
+  }
+  for (auto it = Cards.rbegin(); it != Cards.rend(); ++it) {
+    cout << *it << endl;
+  }
   
   //testing single node
   if (Cards.insert(c1) == true) {
@@ -37,20 +44,18 @@ int main(int argv, char** argc){
   }
   
   //test contains
-  Card c1("a",'d');
-  if (Cards.contains(c1)) {
+  Card c7("2",'s');
+  Cards.insert(c7);
+  if (Cards.contains(c2)) {
     cout << "This card is in the list" << endl;
   }
-  Card c1("a",'d');
-  if (Cards.contains(c1)) {
+  if (Cards.contains(c5)) {
     cout << "This card is in the list" << endl;
   }
-  Card c1("a",'d');
-  if (Cards.contains(c1)) {
+  if (Cards.contains(c6)) {
     cout << "This card is in the list" << endl;
   }
-  Card c1("a",'d');
-  if (Cards.contains(c1)) {
+  if (Cards.contains(c7)) {
     cout << "This card is in the list" << endl;
   }  
 
@@ -59,13 +64,30 @@ int main(int argv, char** argc){
   if (!Cards.remove(c3)) {
     cout << "This card is not in the list!" << endl;
   }
-  
-  
+  Cards.printInOrder();  
+  //test remove cards that exist
+  if (Cards.remove(c1)) {
+    cout << "Card removed!" << endl;
+  }
+  Cards.printInOrder();
+  if (Cards.remove(c2)) {
+    cout << "Card removed!" << endl;
+  }
+  if (Cards.remove(c5)) {
+    cout << "Card removed!" << endl;
+  }
+  Cards.printInOrder();
+  if (Cards.remove(c6)) {
+    cout << "Card removed!" << endl;
+  }
+  Cards.printInOrder();
+
   //test duplicate insert
   Card c4("a",'d');
   if (!Cards.insert(c4)) {
     cout << "Cannot insert duplicate card!" << endl;
   }
+  Cards.printInOrder();
 
 
  

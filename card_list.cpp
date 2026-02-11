@@ -174,8 +174,8 @@ bool BST::remove(Card& card){
     Node* c = n->right; //right child
     c->parent = p; //child->parent
     if (p == nullptr) { //no parent
+      root = c; //save root as child
       delete n; //delete n
-      root = nullptr; //root null
       return true; //deleted
     } else { //there is a parent 
       if (p->right == n) { //parent's right is current node
