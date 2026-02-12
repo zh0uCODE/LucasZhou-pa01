@@ -86,7 +86,7 @@ int main(int argv, char** argc){
     ss >> suit >> value;
     Card c(value, suit);
     bobCards.insert(c);
-    cout << suit << " " << value << endl;
+    //cout << suit << " " << value << endl;
   }
   cardFile2.close();
   playGame(aliceCards, bobCards);
