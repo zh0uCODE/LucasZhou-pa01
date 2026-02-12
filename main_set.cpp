@@ -87,7 +87,6 @@ int main(int argv, char** argc){
   }
   cardFile1.close();
 
-  cout << endl;
   while (getline (cardFile2, line) && (line.length() > 0)){ 
     char suit;
     string value;
