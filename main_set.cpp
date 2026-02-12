@@ -84,7 +84,6 @@ int main(int argv, char** argc){
     ss >> suit >> value;
     Card c(value, suit);
     aliceCards.insert(c);
-    cout << suit << " " << value << endl;
   }
   cardFile1.close();
 
@@ -96,7 +95,6 @@ int main(int argv, char** argc){
     ss >> suit >> value;
     Card c(value, suit);
     bobCards.insert(c);
-    cout << suit << " " << value << endl;
   }
   cardFile2.close();
 
