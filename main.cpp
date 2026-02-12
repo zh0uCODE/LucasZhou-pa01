@@ -22,7 +22,7 @@ void playGame(BST& a, BST& b) {
        }
      }
     //bob turn
-     for (auto it = b.rbegin(); it != b.rend(); ++it) { //back
+     for (auto it = b.rbegin(); it != b.rend(); --it) { //back
        if (a.contains(*it)) {
          cout << "Bob picked matching card " << *it << endl;
          a.remove(*it);

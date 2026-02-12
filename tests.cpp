@@ -62,7 +62,7 @@ int main(int argv, char** argc){
   for (auto it = Cards.begin(); it != Cards.end(); ++it) {
     cout << *it << endl;
   }
-  for (auto it = Cards.rbegin(); it != Cards.rend(); ++it) {
+  for (auto it = Cards.rbegin(); it != Cards.rend(); --it) {
     cout << *it << endl;
   }
   
@@ -84,15 +84,14 @@ int main(int argv, char** argc){
     cout << *it << endl;
   }
   cout << endl;
-  auto it = Cards.end();
-  while (it != Cards.begin()) {
-    --it;
+  cout << "========================================" << endl;
+  for (auto it = Cards.rbegin(); it != Cards.rend(); --it) {
     cout << *it << endl;
   }
-  
   cout << endl;
   
   //test equal
+  auto it = Cards.begin();
   if (it == Cards.begin()) {
     cout << "== works!" << endl;
   }  
